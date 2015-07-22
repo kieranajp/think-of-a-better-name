@@ -6,15 +6,15 @@
 
 @if ($issues)
 
-    <form method="post" action="/issues/add">
+    <form class="col s12" method="post" action="/issues/add">
         {!! csrf_field() !!}
 
         @foreach ($issues as $issue)
 
             <li>
-                <label>
+                <input type="checkbox" name="issues[]" id="issue-{{ $issue['id'] }}" value="{{ $repo }}/{{ $issue['number'] }}">
+                <label for="issue-{{ $issue['id'] }}">
                     {{ $issue['title'] }}
-                    <input type="checkbox" name="issues[]" value="{{ $repo }}/{{ $issue['number'] }}">
                 </label>
             </li>
 

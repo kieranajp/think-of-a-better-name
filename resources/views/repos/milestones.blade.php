@@ -2,17 +2,32 @@
 
 @section('content')
 
-<a href="/repos/{{ $repo }}">Show Issues</a>
+<a href="/repos/{{ $repo }}">Show issues</a>
 
 
-@forelse ($milestones as $milestone)
+@if ($milestones)
 
-    <li>{{ $milestone['title'] }}</li>
+    <form class="col s12" method="post" action="/issues/add">
+        {!! csrf_field() !!}
 
-@empty
+        @foreach ($milestones as $milestone)
 
-    No Milestones
+            <li>
+                <input type="checkbox" name="milestones[]" id="milestone-{{ $milestone['id'] }}" value="{{ $repo }}/{{ $milestone['number'] }}">
+                <label for="milestone-{{ $milestone['id'] }}">
+                    {{ $milestone['title'] }}
+                </label>
+            </li>
 
-@endforelse
+        @endforeach
+
+        <button type="submit">Save</button>
+    </form>
+
+@else
+
+    No milestones
+
+@endif
 
 @endsection
