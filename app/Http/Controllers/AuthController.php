@@ -43,4 +43,11 @@ class AuthController extends Controller
 
         return redirect()->action('ReposController@index');
     }
+
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/')->with('status', 'You have been logged out');
+    }
 }

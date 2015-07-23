@@ -8,9 +8,9 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
-class User extends Model implements AuthenticatableContract, CanResetPasswordContract
+class User extends Model implements AuthenticatableContract
 {
-    use Authenticatable, CanResetPassword;
+    use Authenticatable;
 
     /**
      * The database table used by the model.
@@ -41,5 +41,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     public function report()
     {
         return $this->hasOne(App\Report::class);
+    }
+
+    /**
+     * Override the setRememberToken method
+     */
+    public function setRememberToken($value)
+    {
+        // noop
     }
 }

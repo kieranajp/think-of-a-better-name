@@ -12,7 +12,6 @@ var elixir = require('laravel-elixir');
  |
  */
 
-
 elixir(function(mix) {
     mix.sass('app.sass', 'public/css/', {
         includePaths: [

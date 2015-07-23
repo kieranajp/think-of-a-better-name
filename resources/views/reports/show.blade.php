@@ -4,11 +4,27 @@
 
     @if ($report)
 
-        @foreach ($report->issues as $issue)
+        @foreach ($report as $repo => $issues)
 
-            <li>#{{ $issue['number'] }} - {{ $issue['title'] }} ({{ $issue['state'] }})</li>
+            <h4>{{ $repo }}</h4>
 
+            <ul class="collection">
+                @foreach ($issues as $issue)
+                    <li class="collection-item">
+                        #{{ $issue['number'] }} - {{ $issue['title'] }}
+
+
+                        @foreach ($issue['labels'] as $label)
+                            <span class="badge" style="color: #{{ $label['color'] }}">{{ $label['name'] }}</span>
+                        @endforeach
+
+                        <span class="badge">{{ $issue['state'] }}</span>
+
+                    </li>
+                @endforeach
+            </ul>
         @endforeach
+
 
         <form method="POST">
             {!! csrf_field() !!}

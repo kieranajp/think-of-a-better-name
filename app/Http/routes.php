@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['middleware' => 'guest'], function() {
+Route::group(['middleware' => 'guest'], function () {
 
     Route::get('auth/github', 'AuthController@redirectToProvider');
     Route::get('auth/github/callback', 'AuthController@handleProviderCallback');
@@ -24,12 +24,13 @@ Route::group(['middleware' => 'guest'], function() {
 });
 
 
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('auth/logout', 'AuthController@logout');
 
     Route::get('repos', 'ReposController@index');
     Route::post('repos', 'ReposController@select');
 
-    Route::get('repos/{user}/{name}', 'ReposController@show');
+    Route::get('issues/{user}/{name}', 'ReposController@show');
     Route::get('milestones/{user}/{name}', 'ReposController@milestones');
 
     Route::post('issues/add', 'ReposController@add');
