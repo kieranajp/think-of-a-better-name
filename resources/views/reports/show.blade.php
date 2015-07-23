@@ -36,6 +36,8 @@
 
         <a href="/repos">Go add some issues</a>
 
+        <p>(If you've just added some, wait a few seconds and then refresh - I'm probably just fetching the details from Github)</p>
+
     @endif
 
 @endsection
