@@ -29,10 +29,13 @@ class ReportsController extends Controller
         $report = Report::findByUser($this->user);
 
         $issues = [];
-        foreach ($report->issues as $issue) {
-            $url = explode('/', $issue['url']);
-            $repo = implode('/', [ $url[4], $url[5] ]);
-            $issues[$repo][] = $issue;
+
+        if ($report) {
+            foreach ($report->issues as $issue) {
+                $url = explode('/', $issue['url']);
+                $repo = implode('/', [ $url[4], $url[5] ]);
+                $issues[$repo][] = $issue;
+            }
         }
 
         return view('reports.show', [
