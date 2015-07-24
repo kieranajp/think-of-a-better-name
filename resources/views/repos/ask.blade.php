@@ -23,7 +23,8 @@
 
             <div class="input-field col s3 offset-s7">
 
-                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                <button class="btn waves-effect waves-light" type="submit" name="action">
+                    <span>Submit</span>
                     <i class="material-icons">send</i>
                 </button>
 

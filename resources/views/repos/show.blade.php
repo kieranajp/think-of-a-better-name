@@ -32,7 +32,7 @@
 
         </ul>
 
-        <button type="submit">Save</button>
+        <button type="submit" class="btn waves-effect waves-light">Save</button>
     </form>
 
 @else

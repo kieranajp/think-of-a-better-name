@@ -2489,8 +2489,8 @@ span.badge {
 
 @font-face {
   font-family: "Material-Design-Icons";
-  src: url("../font/material-design-icons/Material-Design-Icons.eot");
-  src: url("../font/material-design-icons/Material-Design-Icons.eot?#iefix") format("embedded-opentype"), url("../font/material-design-icons/Material-Design-Icons.woff") format("woff"), url("../font/material-design-icons/Material-Design-Icons.ttf") format("truetype"), url("../font/material-design-icons/Material-Design-Icons.svg#Material-Design-Icons") format("svg");
+  src: url("/font/material-design-icons/Material-Design-Icons.eot");
+  src: url("/font/material-design-icons/Material-Design-Icons.eot?#iefix") format("embedded-opentype"), url("/font/material-design-icons/Material-Design-Icons.woff") format("woff"), url("/font/material-design-icons/Material-Design-Icons.ttf") format("truetype"), url("/font/material-design-icons/Material-Design-Icons.svg#Material-Design-Icons") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -5053,27 +5053,27 @@ nav {
 
 @font-face {
   font-family: "Roboto";
-  src: url("../font/roboto/Roboto-Thin.ttf");
+  src: url("/font/roboto/Roboto-Thin.ttf");
   font-weight: 200; }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../font/roboto/Roboto-Light.ttf");
+  src: url("/font/roboto/Roboto-Light.ttf");
   font-weight: 300; }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../font/roboto/Roboto-Regular.ttf");
+  src: url("/font/roboto/Roboto-Regular.ttf");
   font-weight: 400; }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../font/roboto/Roboto-Medium.ttf");
+  src: url("/font/roboto/Roboto-Medium.ttf");
   font-weight: 500; }
 
 @font-face {
   font-family: "Roboto";
-  src: url("../font/roboto/Roboto-Bold.ttf");
+  src: url("/font/roboto/Roboto-Bold.ttf");
   font-weight: 700; }
 
 a {
@@ -7699,5 +7699,13 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
 @media (min-height: 40.125em) {
   .picker--time .picker__box {
     margin-bottom: 5em; } }
+
+@media print {
+  html, body {
+    font-size: 10px; }
+  nav, .btn, .btn-large, .badge {
+    display: none; }
+  .badge.state {
+    display: inline; } }
 
 /*# sourceMappingURL=app.css.map */

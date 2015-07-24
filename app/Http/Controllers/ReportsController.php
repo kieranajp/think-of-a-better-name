@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Report;
+use Illuminate\Support\Collection;
 
 class ReportsController extends Controller
 {
@@ -34,13 +35,22 @@ class ReportsController extends Controller
             foreach ($report->issues as $issue) {
                 $url = explode('/', $issue['url']);
                 $repo = implode('/', [ $url[4], $url[5] ]);
-                $issues[$repo][] = $issue;
+
+                if (!isset($issues[$repo])) {
+                    $issues[$repo] = new Collection;
+                }
+
+                $issues[$repo]->push($issue);
             }
+        }
+
+        foreach ($issues as $repo => $issue) {
+            $issues[$repo] = $issue->sortByDesc('number');
         }
 
         return view('reports.show', [
             'user'   => $this->user,
-            'report' => $issues
+            'report' => $issues,
         ]);
     }
 

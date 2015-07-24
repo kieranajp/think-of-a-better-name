@@ -13,12 +13,11 @@
                     <li class="collection-item">
                         #{{ $issue['number'] }} - {{ $issue['title'] }}
 
-
                         @foreach ($issue['labels'] as $label)
                             <span class="badge" style="color: #{{ $label['color'] }}">{{ $label['name'] }}</span>
                         @endforeach
 
-                        <span class="badge">{{ $issue['state'] }}</span>
+                        <span class="badge state">{{ $issue['state'] }}</span>
 
                     </li>
                 @endforeach
@@ -29,7 +28,7 @@
         <form method="POST">
             {!! csrf_field() !!}
             <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">Wipe report</button>
+            <button type="submit" class="btn waves-effect waves-light">Wipe report</button>
         </form>
 
     @else

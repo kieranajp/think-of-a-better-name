@@ -5,11 +5,12 @@ namespace App\Jobs;
 use App\Jobs\Job;
 use App\Report;
 use App\User;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
+use GrahamCampbell\GitHub\GitHubManager;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use GrahamCampbell\GitHub\GitHubManager;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Collection;
 
 class AddIssuesHandler extends Job implements SelfHandling, ShouldQueue
 {
@@ -38,10 +39,10 @@ class AddIssuesHandler extends Job implements SelfHandling, ShouldQueue
     {
         $github->authenticate($this->user->token, 'http_token');
 
-        $issues = [];
+        $issues = new Collection();
         foreach ($this->issues as $issue) {
             $i = explode('/', $issue);
-            $issues[] = (object)$github->issues()->show($i[0], $i[1], $i[2]);
+            $issues->push((object)$github->issues()->show($i[0], $i[1], $i[2]));
         }
 
         if ($report = Report::findByUser($this->user)) {
@@ -49,7 +50,7 @@ class AddIssuesHandler extends Job implements SelfHandling, ShouldQueue
         } else {
             $report = new Report([
                 'user_id' => $this->user->id,
-                'issues'  => $issues,
+                'issues'  => $issues->sortByDesc('number'),
             ]);
         }
 
